@@ -1,4 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addEmployee,
+  updateEmployee,
+  clearEditingEmployee,
+} from "../features/employees/employeeSlice";
 
 const initialFormState = {
   employeeName: "",
@@ -9,21 +15,41 @@ const initialFormState = {
 };
 
 function EmployeeForm() {
+  const dispatch = useDispatch();
+  const { employeesList, editingId } = useSelector(
+    (state) => state.employees,
+  );
+
   const [formData, setFormData] = useState(initialFormState);
 
+  useEffect(() => {
+    if (editingId) {
+      const employeeToEdit = employeesList.find((emp) => emp.id === editingId);
+      if (employeeToEdit) setFormData(employeeToEdit);
+    } else {
+      setFormData(initialFormState);
+    }
+  }, [editingId, employeesList]);
+
+
   const handleChange = (e) => {
-    setFormData({...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
-  }
-
-  const handleReset = (e) => {
-    e.preventDefault();
+    if (editingId) {
+      dispatch(updateEmployee({ ...formData, id: editingId }));
+    } else {
+      dispatch(addEmployee(formData));
+    }
     setFormData(initialFormState);
-  }
+  };
+
+  const handleReset = () => {
+    setFormData(initialFormState);
+    dispatch(clearEditingEmployee());
+  };
 
   return (
     <div className="form-container">
@@ -42,10 +68,12 @@ function EmployeeForm() {
         </div>
         <div className="form-group">
           <label>Gender</label>
-          <select name="gender" 
-          value={formData.gender}
-          onChange={handleChange}
-          required>
+          <select
+            name="gender"
+            value={formData.gender}
+            onChange={handleChange}
+            required
+          >
             <option value="">Select Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
@@ -54,10 +82,12 @@ function EmployeeForm() {
         </div>
         <div className="form-group">
           <label>Department</label>
-          <select name="department" 
-          value={formData.department}
-          onChange={handleChange}
-          required>
+          <select
+            name="department"
+            value={formData.department}
+            onChange={handleChange}
+            required
+          >
             <option value="">Select Department</option>
             <option value="HR">HR</option>
             <option value="Admin">Admin</option>
@@ -70,9 +100,13 @@ function EmployeeForm() {
         </div>
         <div className="form-group">
           <label>Date of Join</label>
-          <input type="date" name="dateOfJoin" value={formData.dateOfJoin}
-          onChange={handleChange}
-          required/>
+          <input
+            type="date"
+            name="dateOfJoin"
+            value={formData.dateOfJoin}
+            onChange={handleChange}
+            required
+          />
         </div>
         <div className="form-group">
           <label>Email Address</label>
@@ -82,7 +116,8 @@ function EmployeeForm() {
             placeholder="e.g. alex.rivera@company.com"
             value={formData.email}
             onChange={handleChange}
-            required/>
+            required
+          />
         </div>
 
         <div className="button-group">
