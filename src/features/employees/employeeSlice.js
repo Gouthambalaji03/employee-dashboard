@@ -22,9 +22,9 @@ export const employeeSlice = createSlice({
     deleteEmployee: (state, action) => {
        state.employeesList = state.employeesList.filter(emp => emp.id !== action.payload);
        // if the deleted users was currently in the form, clear the form
-    //    if (state.editingId == action.payload) {
-    //     state.employeesList = null;
-    //    }
+       if (state.editingId == action.payload) {
+        state.editingId = null;
+       }
     },
 
     setEditingEmployee: (state, action) => {

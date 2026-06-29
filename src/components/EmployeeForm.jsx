@@ -24,7 +24,7 @@ function EmployeeForm() {
 
   useEffect(() => {
     if (editingId) {
-      const employeeToEdit = employeesList.find((emp) => emp.id === editingId);
+      const employeeToEdit = employeesList.find((emp) => emp.id == editingId);
       if (employeeToEdit) setFormData(employeeToEdit);
     } else {
       setFormData(initialFormState);
@@ -121,8 +121,8 @@ function EmployeeForm() {
         </div>
 
         <div className="button-group">
-          <button type="submit" className="btn-submit" onClick={handleSubmit}>
-            Submit
+          <button type="submit" className="btn-submit">
+            {editingId ? 'Update' : 'Submit'}
           </button>
           <button type="reset" className="btn-reset" onClick={handleReset}>
             Reset

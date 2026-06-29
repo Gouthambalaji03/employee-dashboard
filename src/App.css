@@ -144,3 +144,99 @@ button {
 .btn-reset:active {
   transform: translateY(0);
 }
+
+.table-container {
+  width: 100%;
+  max-width: 100%;
+  margin-top: 2rem;
+  background: linear-gradient(145deg, #131825, #1a2032);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: transparent;
+  color: #f3f4f6;
+  text-align: left;
+}
+
+th {
+  background-color: rgba(255, 255, 255, 0.03);
+  color: #ccff00;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+  transition: background-color 0.2s ease;
+  vertical-align: middle;
+}
+
+th:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.sort-icon {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 0.8rem;
+  color: #6b7280;
+  vertical-align: middle;
+  transition: color 0.2s ease;
+}
+
+.sort-icon.active {
+  color: #ccff00;
+}
+
+td {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.9rem;
+  color: #d1d5db;
+  vertical-align: middle;
+  word-break: break-word;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.01);
+}
+
+tr:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Actions Column Alignment & Buttons */
+th:last-child,
+td:last-child {
+  text-align: center;
+  white-space: nowrap;
+  width: 120px;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 8px;
+  font-size: 1.1rem;
+  transition: transform 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-btn:hover {
+  transform: scale(1.2);
+}
