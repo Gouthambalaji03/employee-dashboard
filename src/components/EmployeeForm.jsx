@@ -60,7 +60,7 @@ function EmployeeForm() {
           <input
             type="text"
             name="employeeName"
-            placeholder="e.g. Alex Rivera"
+            placeholder="e.g. Goutham Balaji P S"
             value={formData.employeeName}
             onChange={handleChange}
             required
@@ -113,7 +113,7 @@ function EmployeeForm() {
           <input
             type="email"
             name="email"
-            placeholder="e.g. alex.rivera@company.com"
+            placeholder="e.g. Gouthambalaji@gmail.com"
             value={formData.email}
             onChange={handleChange}
             required
